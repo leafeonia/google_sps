@@ -20,15 +20,10 @@
 .divcss_margin {margin:5px;}
 </style>
 <style type="text/css"></style><style>@-moz-keyframes nodeInserted{from{opacity:0.99;}to{opacity:1;}}@-webkit-keyframes nodeInserted{from{opacity:0.99;}to{opacity:1;}}@-o-keyframes nodeInserted{from{opacity:0.99;}to{opacity:1;}}@keyframes nodeInserted{from{opacity:0.99;}to{opacity:1;}}embed,object{animation-duration:.001s;-ms-animation-duration:.001s;-moz-animation-duration:.001s;-webkit-animation-duration:.001s;-o-animation-duration:.001s;animation-name:nodeInserted;-ms-animation-name:nodeInserted;-moz-animation-name:nodeInserted;-webkit-animation-name:nodeInserted;-o-animation-name:nodeInserted;}</style>
+<script src="script.js"></script>
 </head>
 
-<body>
-
-<script LANGUAGE="javascript"> 
-function na() {
-	alert("Sorry, private files have been removed.")
-}
-</script>
+<body onload="loadComment()"
 
 <form name="aspnetForm" method="post" id="aspnetForm">    
     <div id="HeaderDiv">
@@ -263,6 +258,8 @@ function na() {
     <br>
 
 </div>
+
+<div id="CommentDiv"></div>
 
 
 </form>
