@@ -29,7 +29,17 @@ function addRandomGreeting() {
 
 function loadComment() {
     console.log("loadComment()")
-    fetch('/data').then(response => response.text()).then(comment => {
-        document.getElementById('CommentDiv').innerText = comment
+    fetch('/data').then(response => response.json()).then(comment => {
+        const commentDiv = document.getElementById('CommentDiv');
+        for(var i = 0;i < 3;i++){
+            commentDiv.appendChild(createListElement(comment[i]));
+        }
     })
+}
+
+/** Creates an <li> element containing text. */
+function createListElement(text) {
+  const liElement = document.createElement('li');
+  liElement.innerText = text;
+  return liElement;
 }
