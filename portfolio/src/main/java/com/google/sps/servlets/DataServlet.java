@@ -21,15 +21,30 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import java.util.ArrayList;
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.PreparedQuery;
+import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Query.SortDirection;
 
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
 @WebServlet("/comment")
 public class DataServlet extends HttpServlet {
 
-  private ArrayList<String> comments = new ArrayList<String>();
-
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    Query query = new Query("Comment").addSort("timestamp", SortDirection.DESCENDING);
+    
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    PreparedQuery results = datastore.prepare(query);
+
+    ArrayList<String> comments = new ArrayList<String>();
+    for (Entity entity : results.asIterable()) {
+      String comment = (String) entity.getProperty("text");
+      comments.add(comment);
+    }
+
     Gson gson = new Gson();
     String json = gson.toJson(comments);
     response.setContentType("application/json;");
@@ -40,7 +55,14 @@ public class DataServlet extends HttpServlet {
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     String comment = request.getParameter("comment-input");
-    comments.add(comment);
+    long timestamp = System.currentTimeMillis();
+
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    Entity commentEntity = new Entity("Comment");
+    commentEntity.setProperty("text", comment);
+    commentEntity.setProperty("timestamp", timestamp);
+    datastore.put(commentEntity);
+
     response.sendRedirect("/index.html");
   }
 }
