@@ -29,11 +29,11 @@ function addRandomGreeting() {
 
 function loadComment() {
     console.log("loadComment()")
-    fetch('/data').then(response => response.json()).then(comment => {
+    fetch('/comment').then(response => response.json()).then(comments => {
         const commentDiv = document.getElementById('CommentDiv');
-        for(var i = 0;i < 3;i++){
-            commentDiv.appendChild(createListElement(comment[i]));
-        }
+        comments.forEach((comment) => {
+            commentDiv.appendChild(createListElement(comment));
+        });
     })
 }
 
