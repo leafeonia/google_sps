@@ -14,16 +14,20 @@
 		color: #880000;
 		font-weight: 600;
 	}
+    #map{
+        height: 500px;
+    }
 </style>
 <style>
 .divcss_border {border:3px double #880000;}
 .divcss_margin {margin:5px;}
 </style>
 <style type="text/css"></style><style>@-moz-keyframes nodeInserted{from{opacity:0.99;}to{opacity:1;}}@-webkit-keyframes nodeInserted{from{opacity:0.99;}to{opacity:1;}}@-o-keyframes nodeInserted{from{opacity:0.99;}to{opacity:1;}}@keyframes nodeInserted{from{opacity:0.99;}to{opacity:1;}}embed,object{animation-duration:.001s;-ms-animation-duration:.001s;-moz-animation-duration:.001s;-webkit-animation-duration:.001s;-o-animation-duration:.001s;animation-name:nodeInserted;-ms-animation-name:nodeInserted;-moz-animation-name:nodeInserted;-webkit-animation-name:nodeInserted;-o-animation-name:nodeInserted;}</style>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAML7SAjBL-fOjxdAhG5obCV80J1mUYC7k"></script>
 <script src="script.js"></script>
 </head>
 
-<body onload="loadComment()"
+<body onload="init()"
 
 <form name="aspnetForm" method="post" id="aspnetForm">    
     <div id="HeaderDiv">
@@ -75,14 +79,14 @@
             <li> <a href="#sec: Awards & Honors">[Awards & Honors]</a> section lists some awards and honors I achieved during undergraduate.
             <li> <a href="#sec: Miscellaneous">[Miscellaneous]</a> section presents my extracurricular activities in diverse aspects.
         </ul>
-        Hope you enjoy your visit on my homepage! :)
+        Hope you enjoy your visit on my portfolio! :)
         </div>
     </div>
 
 
 <br>
 <h1 class="separator", id="sec: Biography">Biography</h1>
-<p style="text-align:justify; line-height:20px">I was admitted to study in department of Computer Science and Technology, <a href="http://www.nju.edu.cn/EN/" target="_blank">Nanjing University</a> in September 2017, and joined the <i>National Elite Program of Computer Science</i> at Nanjing University after enrollment. I also attended <i>Vancouver Summer Program</i> at <a href="https://www.ubc.ca/" target="_blank">The University of British Columbia</a> in summer, 2019. You may see my latest CV <a href="./files/cv.pdf" target="_blank">here</a>.<br> <a href="#title">
+<p style="text-align:justify; line-height:20px">I was admitted to study in department of Computer Science and Technology, <a href="http://www.nju.edu.cn/EN/" target="_blank">Nanjing University</a> in September 2017, and joined the <i>National Elite Program of Computer Science</i> at Nanjing University after enrollment. I also attended <i>Vancouver Summer Program</i> at <a href="https://www.ubc.ca/" target="_blank">The University of British Columbia</a> in summer, 2019. <br> <a href="#title">
     <br>[top]</a></p>
 <br>
 
@@ -243,6 +247,23 @@
 <a href="#title">[top]</a>
 <br>
 
+<br>
+<h1 class="separator">Comments</h1>
+<form action="/comment" method="POST">
+
+      <p>Please enter your comment here:</p>
+      <textarea name="comment-input"></textarea>
+      <br/>
+      <input type="submit"/>
+</form>
+
+<div id="CommentDiv"></div>
+
+<br>
+<h1 class="separator">Map</h1>
+<div id="map"></div>
+<br>
+
 </div>
 
 <div id="MainFooterDiv">
@@ -252,23 +273,13 @@
 
 </div>
 
-<form action="/comment" method="POST">
 
-      <p>Please enter your comment here:</p>
-      <textarea name="comment-input"></textarea>
-      <br/>
-      <input type="submit" />
-</form>
 
 <div id="FooterDiv">
     <hr>
-    <div style="text-align:right">Last modified: 2020-07-09<br></div>
     <br>
 
 </div>
-
-<div id="CommentDiv"></div>
-
 
 </form>
 <!--

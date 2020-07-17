@@ -27,14 +27,32 @@ function addRandomGreeting() {
   greetingContainer.innerText = greeting;
 }
 
+function loadMap(){
+    console.log("loadMap()");
+    const map = new google.maps.Map(
+      document.getElementById('map'),
+      {center: {lat: 32.115, lng: 118.958}, zoom: 15});
+
+    const trexMarker = new google.maps.Marker({
+      position: {lat: 32.110, lng: 118.9585},
+      map: map,
+      title: 'Nanjing University Xianlin Campus'
+    });
+}
+
 function loadComment() {
-    console.log("loadComment()")
+    console.log("loadComment()");
     fetch('/comment').then(response => response.json()).then(comments => {
         const commentDiv = document.getElementById('CommentDiv');
         comments.forEach((comment) => {
             commentDiv.appendChild(createListElement(comment));
         });
     })
+}
+
+function init(){
+    loadComment();
+    loadMap();
 }
 
 /** Creates an <li> element containing text. */
